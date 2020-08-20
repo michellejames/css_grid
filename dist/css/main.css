@@ -1,0 +1,255 @@
+/* 
+==============================================
+CONTENT:	CSS Grid Exercise
+AUTHOR:		webDevShelly
+==============================================
+TABLE OF CONTENTS:
+0. Reset
+1. Main Layout
+2. Content
+==============================================
+*/
+/* 0. Reset ================================= */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+blockquote,
+q {
+	quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* 1. Main Layout =========================== */
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background: #ccc;
+	color: #151E46;
+	font-size: 16px;
+}
+
+/* 2. Content =============================== */
+/* ========== GRID CONTAINER =========== */
+.grid-container {
+	margin: 2rem;
+	border: 3px solid #D31682;
+	display: grid;
+	/* ========== Defining rows and columns =========== */
+	/* ========== Define how grid should handle contant that's outside of grid =========== */
+	grid-auto-rows: auto;
+	grid-auto-columns: auto;
+	/* ========== Define how grid items should be added to grid =========== */
+	grid-auto-flow: dense;
+	/* ========== Reference custom grid areas in container =========== */
+	/* ========== SHORTCUT =========== */
+	grid-template: "header		header		header		header"		1fr "section1	section2	section2	section3"	1fr "section1	section2	section2	."			1fr "footer		footer		footer		footer"		1fr / 1fr 1fr 1fr 1fr;
+	/* ========== Define grid position in grid container =========== */
+	/* ========== SHORTCUT =========== */
+	/* ========== Define cell position in the grid =========== */
+	/* ========== SHORTCUT =========== */
+	/* ========== Define spacing between each cell =========== */
+	/* ========== SHORTCUT =========== */
+	gap: 10px;
+}
+
+/* ========== GRID CHILDREN =========== */
+.grid-children {
+	border: 3px solid #151E46;
+	background: #45C1C0;
+	font-size: 3rem;
+	padding: 1rem;
+}
+
+.grid-children h2 {
+	font-size: 2rem;
+}
+
+.grid-children p {
+	font-size: 1rem;
+}
+
+.grid-child1 {
+	/* ========== Defining start and end for individual grid cells =========== */
+	/* ========== SHORTCUT =========== */
+	/* ========== EVEN SHORTER SHORTCUT =========== */
+	grid-area: header;
+	/* ========== Define content position in grid cell =========== */
+	/* ========== SHORTCUT =========== */
+}
+
+.grid-child2 {
+	grid-area: section1;
+	background: lightsalmon;
+}
+
+.grid-child3 {
+	grid-area: section2;
+	background: rosybrown;
+}
+
+.grid-child4 {
+	grid-area: section3;
+	background: palevioletred;
+}
+
+.grid-child5 {
+	grid-area: footer;
+}
+
+.grid-child6 {
+	order: 1;
+}
+
+@media screen and (max-width: 1024px) {
+	.grid-child2 {
+		grid-area: 2 / 1 / span 2 / span 2;
+	}
+	.grid-child3 {
+		grid-area: 2 / 3 / span 2 / span 2;
+	}
+	.grid-child4 {
+		grid-area: 4 / 1 / 5 / -1;
+	}
+	.grid-child5 {
+		grid-area: 5 / 1 / 6 / -1;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.grid-child2 {
+		grid-area: 2 / 1 / 2 / -1;
+	}
+	.grid-child3 {
+		grid-area: 3 / 1 / span 1 / -1;
+	}
+}
+
+/*# sourceMappingURL=main.css.map */

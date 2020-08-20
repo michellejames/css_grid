@@ -1,0 +1,216 @@
+/* 
+==============================================
+CONTENT:	CSS Grid Exercise
+AUTHOR:		webDevShelly
+==============================================
+TABLE OF CONTENTS:
+0. Reset
+1. Main Layout
+2. Content
+==============================================
+*/
+/* 0. Reset ================================= */
+$blue: #151E46;
+$pink: #D31682;
+$teal: #45C1C0;
+$padding: 10rem;
+
+@import 'reset';
+
+/* 1. Main Layout =========================== */
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background: #ccc;
+	color: $blue;
+	font-size: 16px;
+}
+
+/* 2. Content =============================== */
+
+/* ========== GRID CONTAINER =========== */
+
+.grid-container {
+	margin: 2rem;
+	border:  3px solid $pink;
+
+	display: grid;
+	// height: 600px;
+
+/* ========== Defining rows and columns =========== */
+
+	// grid-template-rows: 150px 100px 200px;
+	// grid-template-columns: 200px 300px;
+
+	// grid-template-rows: 10% 40% 10%;	//needs a height on grid container
+	// grid-template-columns: 20% 20% 20%;
+
+	// grid-template-rows: 1fr 4fr 1fr 1fr;
+	// grid-template-columns: 2fr 2fr 2fr 1fr;
+
+	// grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	// grid-template-rows: repeat(4, 1fr);
+	// grid-template-columns: repeat(4, 1fr);
+
+/* ========== Define how grid should handle contant that's outside of grid =========== */
+
+	grid-auto-rows: auto;	//default
+	grid-auto-columns: auto;
+
+/* ========== Define how grid items should be added to grid =========== */
+
+	grid-auto-flow: dense; //structures grid order to fit best and not by order
+
+/* ========== Reference custom grid areas in container =========== */
+
+	// grid-template-areas: 
+	// 	"header		header		header		header"
+	// 	"section1	section2	section2	section3"
+	// 	"section1	section2	section2	."
+	// 	"footer		footer		footer		footer";
+
+	/* ========== SHORTCUT =========== */
+	// grid-template: 1fr repeat(3, .3fr) 1fr / 20% 20% 20% 1fr; //without grid-area names
+	// grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+
+	grid-template: 
+		"header		header		header		header"		1fr
+		"section1	section2	section2	section3"	1fr
+		"section1	section2	section2	."			1fr
+		"footer		footer		footer		footer"		1fr
+		/ 1fr 1fr 1fr 1fr;
+
+
+/* ========== Define grid position in grid container =========== */
+
+	// align-content: center;
+	// justify-content: end;
+
+	/* ========== SHORTCUT =========== */
+	// place-content: center end;
+
+/* ========== Define cell position in the grid =========== */
+
+	// align-items: center;
+	// justify-items: center;
+
+	/* ========== SHORTCUT =========== */
+	// place-items: start center;
+
+/* ========== Define spacing between each cell =========== */
+
+	// row-gap: 2rem;
+	// column-gap: 5%;
+
+	/* ========== SHORTCUT =========== */
+	gap: 10px;
+}
+
+/* ========== GRID CHILDREN =========== */
+
+.grid-children {
+	border: 3px solid $blue;
+	background: $teal;
+	font-size: 3rem;
+	padding: 1rem;
+	// grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
+	h2 {
+		font-size: 2rem;
+	}
+
+	p {
+		font-size: 1rem;
+	}
+}
+
+.grid-child1 {
+
+/* ========== Defining start and end for individual grid cells =========== */
+
+	// grid-row-start: 1;
+	// grid-column-start: 1;
+	// grid-row-end: 2;
+	// grid-column-end: 5;
+
+	/* ========== SHORTCUT =========== */
+	// grid-row: 1/ span 1;
+	// grid-column: 1 / -1;
+
+	/* ========== EVEN SHORTER SHORTCUT =========== */
+	// grid-area: 1 / 1 / 2 /-1;
+	grid-area: header;
+	// grid-area: whatever; //if defined in grid-template-areas in grid container
+
+/* ========== Define content position in grid cell =========== */
+
+	// align-self: center;
+	// justify-self: center;
+
+	/* ========== SHORTCUT =========== */
+	// place-self: center center;
+
+}
+
+.grid-child2 {
+	// grid-area: 2 / 1 / span 2 / 2;
+	grid-area: section1;
+	background: lightsalmon;
+}
+
+.grid-child3 {
+	// grid-area: 2 / 2 / span 2 / span 2;
+	grid-area: section2;
+	background: rosybrown;
+}
+
+.grid-child4 {
+	// grid-area: 2 / 4 / span 1 / -1;
+	grid-area: section3;
+	background: palevioletred;
+}
+
+.grid-child5 {
+	// grid-area: 4 / 1 / 5 / -1;
+	grid-area: footer;
+}
+
+.grid-child6 {
+	// grid-area: 2 / 4 / span 1 / -1;
+	// z-index: 2;
+	order: 1;
+}
+
+@media screen and (max-width: 1024px) {
+	.grid-child2 {
+		grid-area: 2 / 1 / span 2 / span 2;
+	}
+	
+	.grid-child3 {
+		grid-area: 2 / 3 / span 2 / span 2;
+	}
+	
+	.grid-child4 {
+		grid-area: 4 / 1 / 5 / -1;
+	}
+	
+	.grid-child5 {
+		grid-area: 5 / 1 / 6 / -1;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.grid-child2 {
+		grid-area: 2 / 1 / 2 / -1;
+	}
+	
+	.grid-child3 {
+		grid-area: 3 / 1 / span 1 / -1;
+	}
+}
+
+
+
